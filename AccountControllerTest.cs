@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using BuyLocal.Web.Controllers;
 using BuyLocal.Service;
@@ -26,22 +26,22 @@ namespace BuyLocal.Web.Test
 
         #region Login
 
-        //[TestMethod]
-        //public void CanLogin()
-        //{
-        //    //TODO: Mock controller request. 
-        //    //Arrange 
-        //    var controller = new AccountController(new MemberService(new FakeRepository<Member>()), new InstitutionService(new FakeRepository<Institution>()));
+        [TestMethod]
+        public void CanLogin()
+        {
+            //TODO: Mock controller request. 
+            //Arrange 
+            var controller = new AccountController(new MemberService(new FakeRepository<Member>()), new InstitutionService(new FakeRepository<Institution>()));
             
-        //    //Act
-        //    var result = controller.Login("/test");
+            //Act
+            var result = controller.Login("/test");
 
-        //    //Assert
-        //    string BaseUrl = @"https://oauth.mapscu.com/";
+            //Assert
+            string BaseUrl = @"https://oauth.mapscu.com/";
 
-        //    Assert.AreEqual(result, BaseUrl + "?client_id=FCD73EF5-9698-49B8-A458-015C1F8CECDC&response_type=token&state=/test&redirect_uri=" + "");
+            Assert.AreEqual(result, BaseUrl + "?client_id=FCD73EF5-9698-49B8-A458-015C1F8CECDC&response_type=token&state=/test&redirect_uri=" + "");
             
-        //}
+        }
 
         #endregion
         //Offers, Catagories, 
@@ -85,41 +85,41 @@ namespace BuyLocal.Web.Test
 
         }
 
-        //[TestMethod]
-        //public void RedirectCreateProfile()
-        //{
-        //    //Arrange
-        //    var institutionService = new InstitutionService(new FakeRepository<Institution>());
+        [TestMethod]
+        public void RedirectCreateProfile()
+        {
+            //Arrange
+            var institutionService = new InstitutionService(new FakeRepository<Institution>());
 
-        //    var memberService = new MemberService(new FakeRepository<Member>(new List<Member>
-        //    {
-        //        new Member {
-        //            Username = AnonymousUsername,
-        //            AuthType = AuthType.Anonymous,
-        //            InstitutionId = InstitutionId,
-        //            MemberId = 1,
-        //            MemberNumber = null,
-        //            Profile = new Profile{}
-        //        }
-        //    }));
+            var memberService = new MemberService(new FakeRepository<Member>(new List<Member>
+            {
+                new Member {
+                    Username = AnonymousUsername,
+                    AuthType = AuthType.Anonymous,
+                    InstitutionId = InstitutionId,
+                    MemberId = 1,
+                    MemberNumber = null,
+                    Profile = new Profile{}
+                }
+            }));
 
-        //    var controller = new AccountController(memberService, institutionService);
+            var controller = new AccountController(memberService, institutionService);
 
-        //    HttpContext.Current = FakeHttpContext(AnonymousUsername, null, false);
+            HttpContext.Current = FakeHttpContext(AnonymousUsername, null, false);
 
-        //    var testModel = new CreateProfile()
-        //    {
-        //        State = State,
-        //        Username = Username,
-        //        Token = Token
-        //    };
+            var testModel = new CreateProfile()
+            {
+                State = State,
+                Username = Username,
+                Token = Token
+            };
 
-        //    //Act
-        //    var result = (RedirectToRouteResult)controller.CreateProfile(AnonymousUsername, Token, State);
+            //Act
+            var result = (RedirectToRouteResult)controller.CreateProfile(AnonymousUsername, Token, State);
 
-        //    //Assert
-        //    Assert.AreEqual("Index", result.RouteValues["action"]);
-        //}
+            //Assert
+            Assert.AreEqual("Index", result.RouteValues["action"]);
+        }
 
         #endregion
 
